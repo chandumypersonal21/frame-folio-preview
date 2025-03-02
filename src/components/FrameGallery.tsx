@@ -12,6 +12,7 @@ export interface Frame {
   matColor?: string;
   frameWidth?: number;
   matWidth?: number;
+  frameImageUrl?: string;
 }
 
 interface FrameGalleryProps {
@@ -53,19 +54,32 @@ const FrameGallery: React.FC<FrameGalleryProps> = ({
               onClick={() => onSelectFrame(frame.id)}
             >
               <div className="p-3">
-                <AspectRatio ratio={frame.aspectRatio} className="overflow-hidden bg-secondary/50 mb-2">
-                  {previewImage ? (
-                    <img 
-                      src={previewImage}
-                      alt="Frame preview" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <span className="text-xs text-muted-foreground">No image</span>
+                <div className="relative">
+                  <AspectRatio ratio={frame.aspectRatio} className="overflow-hidden bg-secondary/50 mb-2">
+                    {previewImage ? (
+                      <img 
+                        src={previewImage}
+                        alt="Frame preview" 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-xs text-muted-foreground">No image</span>
+                      </div>
+                    )}
+                  </AspectRatio>
+                  
+                  {frame.frameImageUrl && (
+                    <div className="absolute inset-0 pointer-events-none">
+                      <img 
+                        src={frame.frameImageUrl} 
+                        alt={`${frame.name} frame`}
+                        className="w-full h-full object-contain" 
+                      />
                     </div>
                   )}
-                </AspectRatio>
+                </div>
+                
                 <div className="flex flex-col">
                   <span className="font-medium text-sm">{frame.name}</span>
                   <span className="text-xs text-muted-foreground">{frame.dimensions}</span>

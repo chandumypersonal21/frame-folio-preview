@@ -10,7 +10,8 @@ export const frames: Frame[] = [
     borderStyle: "border-2 border-black",
     matColor: "bg-white",
     frameWidth: 12,
-    matWidth: 24
+    matWidth: 24,
+    frameImageUrl: "https://printposters.in/public/uploads/category-frames/frame_171922385542.png"
   },
   {
     id: "square-1x1",
@@ -20,7 +21,8 @@ export const frames: Frame[] = [
     borderStyle: "border-2 border-zinc-800",
     matColor: "bg-stone-50",
     frameWidth: 14,
-    matWidth: 32
+    matWidth: 32,
+    frameImageUrl: "https://printposters.in/public/uploads/category-frames/frame_171922387828.png"
   },
   {
     id: "panoramic",
@@ -30,7 +32,8 @@ export const frames: Frame[] = [
     borderStyle: "border-2 border-zinc-900",
     matColor: "bg-zinc-50",
     frameWidth: 12,
-    matWidth: 32
+    matWidth: 32,
+    frameImageUrl: "https://printposters.in/public/uploads/all-frames/panorama.png"
   },
   {
     id: "portrait-3x4",
@@ -40,7 +43,8 @@ export const frames: Frame[] = [
     borderStyle: "border-2 border-neutral-800",
     matColor: "bg-neutral-50",
     frameWidth: 16,
-    matWidth: 40
+    matWidth: 40,
+    frameImageUrl: "https://printposters.in/public/uploads/all-frames/portrait.png"
   },
   {
     id: "landscape-a4",
@@ -50,7 +54,8 @@ export const frames: Frame[] = [
     borderStyle: "border-2 border-zinc-800",
     matColor: "bg-gray-50",
     frameWidth: 12,
-    matWidth: 32
+    matWidth: 32,
+    frameImageUrl: "https://printposters.in/public/uploads/all-frames/landscape.png"
   },
   {
     id: "classic-5x7",
@@ -60,7 +65,8 @@ export const frames: Frame[] = [
     borderStyle: "border-2 border-black",
     matColor: "bg-stone-50",
     frameWidth: 12,
-    matWidth: 24
+    matWidth: 24,
+    frameImageUrl: "https://printposters.in/public/uploads/all-frames/classic.png"
   },
   {
     id: "golden-ratio",
@@ -70,7 +76,8 @@ export const frames: Frame[] = [
     borderStyle: "border-2 border-zinc-900",
     matColor: "bg-white",
     frameWidth: 16,
-    matWidth: 40
+    matWidth: 40,
+    frameImageUrl: "https://printposters.in/public/uploads/all-frames/golden.png"
   },
   {
     id: "wide-landscape",
@@ -80,6 +87,7 @@ export const frames: Frame[] = [
     borderStyle: "border-2 border-zinc-800",
     matColor: "bg-gray-50",
     frameWidth: 14,
-    matWidth: 32
+    matWidth: 32,
+    frameImageUrl: "https://printposters.in/public/uploads/all-frames/wide.png"
   }
 ];
