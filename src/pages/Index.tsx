@@ -4,13 +4,15 @@ import Header from "@/components/Header";
 import ImageUploader from "@/components/ImageUploader";
 import FramePreview from "@/components/FramePreview";
 import FrameGallery, { Frame } from "@/components/FrameGallery";
-import { frames } from "@/data/frames";
+import { frames, frameSizes, FrameSize } from "@/data/frames";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [selectedFrameId, setSelectedFrameId] = useState<string | null>(null);
   const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null);
+  const [selectedSizeId, setSelectedSizeId] = useState<string | null>("square-8x8"); // Default to square
 
   const handleImageUpload = (file: File) => {
     const imageUrl = URL.createObjectURL(file);
@@ -18,8 +20,9 @@ const Index = () => {
     
     // If no frame is selected, select the first one by default
     if (!selectedFrameId && frames.length > 0) {
-      setSelectedFrameId(frames[0].id);
-      setSelectedFrame(frames[0]);
+      const defaultFrame = frames.find(f => f.sizeId === selectedSizeId) || frames[0];
+      setSelectedFrameId(defaultFrame.id);
+      setSelectedFrame(defaultFrame);
     }
   };
 
@@ -33,6 +36,22 @@ const Index = () => {
     }
   };
 
+  const handleSelectSize = (sizeId: string) => {
+    setSelectedSizeId(sizeId);
+    
+    // Find the first frame with the selected size
+    const firstFrameOfSize = frames.find(f => f.sizeId === sizeId);
+    if (firstFrameOfSize) {
+      setSelectedFrameId(firstFrameOfSize.id);
+      setSelectedFrame(firstFrameOfSize);
+      
+      const size = frameSizes.find(s => s.id === sizeId);
+      if (size) {
+        toast(`Selected ${size.name} size: ${size.dimensions}`);
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -40,10 +59,10 @@ const Index = () => {
       <main className="flex-1 container py-8 px-4 sm:px-6 lg:px-8 mx-auto">
         <section className="max-w-4xl mx-auto mb-12 text-center animate-fade-in">
           <h1 className="text-4xl font-bold tracking-tight mb-4">
-            Preview Your Photos in Beautiful Square Frames
+            Preview Your Photos in Beautiful Frames
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Upload your image and see how it looks in various frame designs. All frames are square (1:1) aspect ratio.
+            Upload your image and see how it looks in various frame designs and sizes.
           </p>
         </section>
         
@@ -90,8 +109,28 @@ const Index = () => {
                 </div>
                 
                 <div className="rounded-lg bg-muted/30 p-4">
-                  <h3 className="font-medium mb-2">Available Frame Size:</h3>
-                  <p className="text-sm text-muted-foreground">8" × 8" (20.3cm × 20.3cm) - Square Format</p>
+                  <h3 className="font-medium mb-3">Available Frame Sizes:</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {frameSizes.map((size) => (
+                      <button
+                        key={size.id}
+                        onClick={() => handleSelectSize(size.id)}
+                        className={cn(
+                          "px-3 py-2 text-sm rounded-md transition-colors",
+                          selectedSizeId === size.id 
+                            ? "bg-primary text-primary-foreground" 
+                            : "bg-muted hover:bg-muted/80"
+                        )}
+                      >
+                        {size.name}
+                      </button>
+                    ))}
+                  </div>
+                  {selectedSizeId && (
+                    <p className="text-sm text-muted-foreground mt-2">
+                      {frameSizes.find(s => s.id === selectedSizeId)?.dimensions}
+                    </p>
+                  )}
                 </div>
               </div>
             )}
@@ -104,6 +143,7 @@ const Index = () => {
             selectedFrameId={selectedFrameId}
             onSelectFrame={handleSelectFrame}
             previewImage={uploadedImage}
+            filteredSizeId={selectedSizeId}
           />
         </section>
       </main>

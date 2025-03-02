@@ -8,6 +8,7 @@ export interface Frame {
   name: string;
   aspectRatio: number;
   dimensions: string;
+  sizeId: string;
   borderStyle?: string;
   matColor?: string;
   frameWidth?: number;
@@ -21,6 +22,7 @@ interface FrameGalleryProps {
   onSelectFrame: (frameId: string) => void;
   previewImage: string | null;
   className?: string;
+  filteredSizeId?: string | null;
 }
 
 const FrameGallery: React.FC<FrameGalleryProps> = ({
@@ -29,18 +31,24 @@ const FrameGallery: React.FC<FrameGalleryProps> = ({
   onSelectFrame,
   previewImage,
   className,
+  filteredSizeId,
 }) => {
+  // Filter frames by selected size
+  const filteredFrames = filteredSizeId 
+    ? frames.filter(frame => frame.sizeId === filteredSizeId)
+    : frames;
+
   return (
     <div className={cn("space-y-6", className)}>
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-medium">Select Frame Style</h3>
         <span className="text-sm text-muted-foreground">
-          {frames.length} templates available
+          {filteredFrames.length} templates available
         </span>
       </div>
       
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {frames.map((frame) => {
+        {filteredFrames.map((frame) => {
           const isSelected = selectedFrameId === frame.id;
           
           return (
@@ -55,7 +63,7 @@ const FrameGallery: React.FC<FrameGalleryProps> = ({
             >
               <div className="p-3">
                 <div className="relative">
-                  <AspectRatio ratio={1} className="overflow-hidden bg-secondary/50 mb-2">
+                  <AspectRatio ratio={frame.aspectRatio} className="overflow-hidden bg-secondary/50 mb-2">
                     {previewImage ? (
                       <img 
                         src={previewImage}
