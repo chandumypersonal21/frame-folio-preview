@@ -33,7 +33,7 @@ export const frames: Frame[] = [
     matColor: "bg-zinc-50",
     frameWidth: 12,
     matWidth: 32,
-    frameImageUrl: "https://printposters.in/public/uploads/all-frames/panorama.png"
+    frameImageUrl: "https://printposters.in/public/uploads/category-frames/frame_17192239138.png"
   },
   {
     id: "portrait-3x4",
@@ -44,7 +44,7 @@ export const frames: Frame[] = [
     matColor: "bg-neutral-50",
     frameWidth: 16,
     matWidth: 40,
-    frameImageUrl: "https://printposters.in/public/uploads/all-frames/portrait.png"
+    frameImageUrl: "https://printposters.in/public/uploads/category-frames/frame_17193751424.png"
   },
   {
     id: "landscape-a4",
@@ -55,7 +55,7 @@ export const frames: Frame[] = [
     matColor: "bg-gray-50",
     frameWidth: 12,
     matWidth: 32,
-    frameImageUrl: "https://printposters.in/public/uploads/all-frames/landscape.png"
+    frameImageUrl: "https://printposters.in/public/uploads/category-frames/frame_171937517915.png"
   },
   {
     id: "classic-5x7",
@@ -66,7 +66,7 @@ export const frames: Frame[] = [
     matColor: "bg-stone-50",
     frameWidth: 12,
     matWidth: 24,
-    frameImageUrl: "https://printposters.in/public/uploads/all-frames/classic.png"
+    frameImageUrl: "https://printposters.in/public/uploads/category-frames/frame_171937521027.png"
   },
   {
     id: "golden-ratio",

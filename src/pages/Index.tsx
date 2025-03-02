@@ -89,6 +89,15 @@ const Index = () => {
                     className="w-full h-full object-contain" 
                   />
                 </div>
+                
+                <div className="rounded-lg bg-muted/30 p-4">
+                  <h3 className="font-medium mb-2">Available Frame Sizes:</h3>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    {frames.map(frame => (
+                      <li key={frame.id}>{frame.dimensions}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             )}
           </div>

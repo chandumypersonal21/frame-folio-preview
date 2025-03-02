@@ -100,7 +100,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload, className 
           <div 
             className="px-5 py-2.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
           >
-            Browse files
+            Upload Image
           </div>
         </div>
         <input 
