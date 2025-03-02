@@ -1,0 +1,86 @@
+
+import React from "react";
+import { cn } from "@/lib/utils";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+
+export interface Frame {
+  id: string;
+  name: string;
+  aspectRatio: number;
+  dimensions: string;
+  borderStyle?: string;
+  matColor?: string;
+  frameWidth?: number;
+  matWidth?: number;
+}
+
+interface FrameGalleryProps {
+  frames: Frame[];
+  selectedFrameId: string | null;
+  onSelectFrame: (frameId: string) => void;
+  previewImage: string | null;
+  className?: string;
+}
+
+const FrameGallery: React.FC<FrameGalleryProps> = ({
+  frames,
+  selectedFrameId,
+  onSelectFrame,
+  previewImage,
+  className,
+}) => {
+  return (
+    <div className={cn("space-y-6", className)}>
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-medium">Select Frame Style</h3>
+        <span className="text-sm text-muted-foreground">
+          {frames.length} templates available
+        </span>
+      </div>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {frames.map((frame) => {
+          const isSelected = selectedFrameId === frame.id;
+          
+          return (
+            <div
+              key={frame.id}
+              className={cn(
+                "frame-card relative rounded-lg overflow-hidden border bg-card",
+                isSelected ? "ring-2 ring-primary ring-offset-2" : "hover:border-primary/50",
+                "cursor-pointer transition-all"
+              )}
+              onClick={() => onSelectFrame(frame.id)}
+            >
+              <div className="p-3">
+                <AspectRatio ratio={frame.aspectRatio} className="overflow-hidden bg-secondary/50 mb-2">
+                  {previewImage ? (
+                    <img 
+                      src={previewImage}
+                      alt="Frame preview" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className="text-xs text-muted-foreground">No image</span>
+                    </div>
+                  )}
+                </AspectRatio>
+                <div className="flex flex-col">
+                  <span className="font-medium text-sm">{frame.name}</span>
+                  <span className="text-xs text-muted-foreground">{frame.dimensions}</span>
+                </div>
+              </div>
+              
+              {isSelected && (
+                <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary" />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default FrameGallery;
