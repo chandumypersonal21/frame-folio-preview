@@ -40,11 +40,10 @@ const Index = () => {
       <main className="flex-1 container py-8 px-4 sm:px-6 lg:px-8 mx-auto">
         <section className="max-w-4xl mx-auto mb-12 text-center animate-fade-in">
           <h1 className="text-4xl font-bold tracking-tight mb-4">
-            Preview Your Photos in Beautiful Frames
+            Preview Your Photos in Beautiful Square Frames
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Upload your image and see how it looks in various frame styles and sizes.
-            Find the perfect frame for your memories.
+            Upload your image and see how it looks in various frame designs. All frames are square (1:1) aspect ratio.
           </p>
         </section>
         
@@ -91,12 +90,8 @@ const Index = () => {
                 </div>
                 
                 <div className="rounded-lg bg-muted/30 p-4">
-                  <h3 className="font-medium mb-2">Available Frame Sizes:</h3>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    {frames.map(frame => (
-                      <li key={frame.id}>{frame.dimensions}</li>
-                    ))}
-                  </ul>
+                  <h3 className="font-medium mb-2">Available Frame Size:</h3>
+                  <p className="text-sm text-muted-foreground">8" × 8" (20.3cm × 20.3cm) - Square Format</p>
                 </div>
               </div>
             )}

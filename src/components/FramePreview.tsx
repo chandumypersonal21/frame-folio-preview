@@ -48,7 +48,6 @@ const FramePreview: React.FC<FramePreviewProps> = ({
   }
 
   const {
-    aspectRatio,
     borderStyle = "border-2 border-black",
     matColor = "bg-white",
     frameWidth = 20,
@@ -66,7 +65,7 @@ const FramePreview: React.FC<FramePreviewProps> = ({
             matColor,
             "relative w-full h-full p-[40px]"
           )}>
-            <AspectRatio ratio={aspectRatio} className="relative overflow-hidden bg-black/5">
+            <AspectRatio ratio={1} className="relative overflow-hidden bg-black/5">
               <img
                 src={image}
                 alt="Framed artwork"
@@ -100,7 +99,7 @@ const FramePreview: React.FC<FramePreviewProps> = ({
               "p-[40px]"
             )}
           >
-            <AspectRatio ratio={aspectRatio} className="overflow-hidden bg-black/5">
+            <AspectRatio ratio={1} className="overflow-hidden bg-black/5">
               <img
                 src={image}
                 alt="Framed artwork"

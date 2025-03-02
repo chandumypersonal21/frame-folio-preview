@@ -39,7 +39,7 @@ const FrameGallery: React.FC<FrameGalleryProps> = ({
         </span>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {frames.map((frame) => {
           const isSelected = selectedFrameId === frame.id;
           
@@ -55,7 +55,7 @@ const FrameGallery: React.FC<FrameGalleryProps> = ({
             >
               <div className="p-3">
                 <div className="relative">
-                  <AspectRatio ratio={frame.aspectRatio} className="overflow-hidden bg-secondary/50 mb-2">
+                  <AspectRatio ratio={1} className="overflow-hidden bg-secondary/50 mb-2">
                     {previewImage ? (
                       <img 
                         src={previewImage}
